@@ -38,5 +38,5 @@ All rights reserved.
    other dealings in the Software.
 
 6. Contact  
-   For any request regarding usage rights, contact the main dev: kutuzovdaniel579-jpg
-   Email will be mentioned in Security.md
+   For any request regarding usage rights, contact the main dev: kutuzovdaniel579-jpg.  
+   Email will be mentioned in Security.md.

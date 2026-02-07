@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minecraft: Smartschool Edition</title>
+
+    <!-- Minecraft-achtig font -->
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Minecraft', monospace;
+        }
+
+        body {
+            background-image: url("https://wallpapercave.com/wp/wp4676588.jpg");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .overlay-loading {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: monospace;
+            z-index: 10;
+        }
+
+        .progress-frame {
+            width: 300px;
+            height: 20px;
+            border: 2px solid white;
+            margin-top: 15px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: lime;
+        }
+
+        .menu-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            text-shadow: 3px 3px 0px black;
+        }
+
+        .title {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .mc-btn {
+            font-family: 'Minecraft', monospace;
+            font-size: 24px;
+            padding: 10px 40px;
+            margin: 6px;
+            background: #6b6b6b;
+            border: 4px solid #3f3f3f;
+            color: white;
+            cursor: pointer;
+            text-shadow: 2px 2px 0px black;
+            min-width: 320px;
+        }
+
+        .mc-btn:hover {
+            background: #8f8f8f;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Minecraft loading screen (zoals bij login) -->
+    <div class="overlay-loading" id="loading">
+        <div style="font-size:32px;">Loading...</div>
+        <div class="progress-frame">
+            <div class="progress-bar" id="mc-bar"></div>
+        </div>
+        <div class="subtitle">Preparing Smartschool terrain...</div>
+    </div>
+
+    <!-- Minecraft hoofdmenu -->
+    <div class="menu-container" id="main-menu" style="display:none;">
+        <div class="title">Minecraft: Smartschool Edition</div>
+
+        <button class="mc-btn" data-action="single">Singleplayer</button><br>
+        <button class="mc-btn" data-action="multi">Multiplayer</button><br>
+        <button class="mc-btn" data-action="realms">Minecraft Realms</button><br>
+        <button class="mc-btn" data-action="access">Accessibility</button><br>
+        <button class="mc-btn" data-action="lang">Language</button><br>
+        <button class="mc-btn" data-action="quit">Quit Game</button>
+
+        <div class="subtitle">Mater Salvatorisinstituut – Smartschool</div>
+    </div>
+
+    <script>
+        // Fake loading (zoals login loading screen)
+        window.addEventListener("DOMContentLoaded", () => {
+            const loading = document.getElementById("loading");
+            const bar = document.getElementById("mc-bar");
+            const menu = document.getElementById("main-menu");
+
+            let p = 0;
+            const interval = setInterval(() => {
+                p += Math.random() * 15;
+                if (p >= 100) {
+                    p = 100;
+                    clearInterval(interval);
+                    loading.style.display = "none";
+                    menu.style.display = "block";
+                }
+                bar.style.width = p + "%";
+            }, 300);
+
+            // Button acties (nu nog demo / alerts)
+            document.addEventListener("click", e => {
+                if (!e.target.classList.contains("mc-btn")) return;
+                const action = e.target.dataset.action;
+
+                if (action === "quit") {
+                    alert("Quit Game: hier zou je normaal uitloggen van Smartschool.");
+                }
+                if (action === "single") {
+                    alert("Singleplayer: hier zouden je favoriete vakken komen.");
+                }
+                if (action === "multi") {
+                    alert("Multiplayer: hier zouden je berichten/servers komen.");
+                }
+                if (action === "realms") {
+                    alert("Realms: hier zouden planner en resultaten komen.");
+                }
+                if (action === "access") {
+                    alert("Accessibility: hier zouden toggles komen voor modules.");
+                }
+                if (action === "lang") {
+                    alert("Language: hier zouden links komen naar Polpo, Scoodle, Diddit, enz.");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

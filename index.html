@@ -20,12 +20,6 @@
             background-image: url("https://wallpapercave.com/wp/wp4676588.jpg");
             background-size: cover;
             background-position: center;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         /* Vignette overlay */
@@ -34,32 +28,6 @@
             inset: 0;
             pointer-events: none;
             background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
-        }
-
-        /* Loading screen */
-        .overlay-loading {
-            position: fixed;
-            inset: 0;
-            background: black;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: monospace;
-            z-index: 10;
-        }
-
-        .progress-frame {
-            width: 300px;
-            height: 20px;
-            border: 2px solid white;
-            margin-top: 15px;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: #00ff00;
         }
 
         /* Title top-left */
@@ -71,7 +39,7 @@
             height: auto;
         }
 
-        /* Splash text top-right */
+        /* Splash text */
         .splash {
             position: absolute;
             top: 40px;
@@ -82,7 +50,7 @@
             text-shadow: 2px 2px 0px black;
         }
 
-        /* Menu buttons */
+        /* Menu container */
         .menu {
             position: absolute;
             top: 50%;
@@ -91,37 +59,34 @@
             text-align: center;
         }
 
-        /* TRUE MINECRAFT BUTTON */
+        /* TRUE MINECRAFT BUTTONS (zoals in je screenshot) */
         .mc-btn {
-            position: relative;
-            display: inline-block;
-            min-width: 320px;
-            padding: 10px 40px;
-            margin: 6px;
-            font-size: 24px;
-            font-family: 'Minecraft', monospace;
+            display: block;
+            width: 300px;
+            padding: 10px 0;
+            margin: 6px auto;
+            font-size: 20px;
             color: #fff;
-            cursor: pointer;
             text-shadow: 2px 2px 0 #000;
+            cursor: pointer;
 
-            background: #6b6b6b;              /* middenvlak */
-            border: 2px solid #000;           /* buitenste zwarte rand */
+            background: #6d6d6d; /* middenvlak */
+            border: 2px solid #000; /* zwarte rand */
 
+            /* bevel shading */
             box-shadow:
-                0 0 0 2px #fff,              /* witte binnenrand */
-                inset 2px 2px 0 #9f9f9f,     /* lichte boven/links */
-                inset -2px -2px 0 #3f3f3f;   /* donkere onder/rechts */
+                inset 2px 2px 0 #8f8f8f,   /* licht boven/links */
+                inset -2px -2px 0 #3f3f3f; /* donker onder/rechts */
         }
 
         .mc-btn:hover {
-            background: #8b8b8b;
+            background: #7f7f7f;
         }
 
         .mc-btn:active {
-            background: #5b5b5b;
+            background: #5a5a5a;
             box-shadow:
-                0 0 0 2px #fff,
-                inset -2px -2px 0 #9f9f9f,
+                inset -2px -2px 0 #8f8f8f,
                 inset 2px 2px 0 #3f3f3f;
         }
 
@@ -147,25 +112,13 @@
 
 <body>
 
-    <!-- Loading overlay -->
-    <div class="overlay-loading" id="loading">
-        <div>Loading...</div>
-        <div class="progress-frame">
-            <div class="progress-bar" id="progress"></div>
-        </div>
-    </div>
-
-    <!-- Vignette -->
     <div class="vignette"></div>
 
-    <!-- Title -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Minecraft_logo.svg"
          class="title">
 
-    <!-- Splash text -->
     <div class="splash">Smartschool Edition!</div>
 
-    <!-- Menu -->
     <div class="menu">
         <button class="mc-btn">Inloggen</button>
         <button class="mc-btn">Smartschool Live</button>
@@ -174,28 +127,8 @@
         <button class="mc-btn">Instellingen</button>
     </div>
 
-    <!-- Version -->
     <div class="version">MCSM v1.0</div>
-
-    <!-- Copyright -->
     <div class="copyright">© 2024 Smartschool Edition</div>
-
-    <script>
-        // Fake loading animation
-        let bar = document.getElementById("progress");
-        let overlay = document.getElementById("loading");
-        let width = 0;
-
-        let interval = setInterval(() => {
-            width += 2;
-            bar.style.width = width + "%";
-
-            if (width >= 100) {
-                clearInterval(interval);
-                overlay.style.display = "none";
-            }
-        }, 40);
-    </script>
 
 </body>
 </html>

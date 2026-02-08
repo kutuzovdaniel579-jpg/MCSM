@@ -23,6 +23,11 @@
             animation: fadeIn 1.2s ease-out;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* Vignette overlay */
         .vignette {
             position: fixed;
@@ -86,26 +91,38 @@
             text-align: center;
         }
 
+        /* TRUE MINECRAFT BUTTON */
         .mc-btn {
-            font-size: 24px;
+            position: relative;
+            display: inline-block;
+            min-width: 320px;
             padding: 10px 40px;
             margin: 6px;
-            min-width: 320px;
-            background: #b0b0b0;
-            border: 4px solid #3f3f3f;
-            color: white;
+            font-size: 24px;
+            font-family: 'Minecraft', monospace;
+            color: #fff;
             cursor: pointer;
-            text-shadow: 2px 2px 0px black;
-            box-shadow: inset -4px -4px 0px #5a5a5a, inset 4px 4px 0px #ffffff40;
+            text-shadow: 2px 2px 0 #000;
+
+            background: #6b6b6b;              /* middenvlak */
+            border: 2px solid #000;           /* buitenste zwarte rand */
+
+            box-shadow:
+                0 0 0 2px #fff,              /* witte binnenrand */
+                inset 2px 2px 0 #9f9f9f,     /* lichte boven/links */
+                inset -2px -2px 0 #3f3f3f;   /* donkere onder/rechts */
         }
 
         .mc-btn:hover {
-            background: #d0d0d0;
+            background: #8b8b8b;
         }
 
         .mc-btn:active {
-            box-shadow: inset 4px 4px 0px #5a5a5a, inset -4px -4px 0px #ffffff40;
-            background: #9e9e9e;
+            background: #5b5b5b;
+            box-shadow:
+                0 0 0 2px #fff,
+                inset -2px -2px 0 #9f9f9f,
+                inset 2px 2px 0 #3f3f3f;
         }
 
         /* Version bottom-left */
@@ -125,71 +142,59 @@
             font-size: 14px;
             opacity: 0.8;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
     </style>
 </head>
+
 <body>
 
-    <!-- Loading screen -->
+    <!-- Loading overlay -->
     <div class="overlay-loading" id="loading">
-        <div style="font-size:32px;">Loading...</div>
+        <div>Loading...</div>
         <div class="progress-frame">
-            <div class="progress-bar" id="mc-bar"></div>
+            <div class="progress-bar" id="progress"></div>
         </div>
-        <div style="margin-top:10px; font-size:14px;">Preparing Smartschool terrain...</div>
     </div>
 
     <!-- Vignette -->
     <div class="vignette"></div>
 
     <!-- Title -->
-    <img class="title" src="assets/McTitle.png" alt="MINECRAFT">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Minecraft_logo.svg"
+         class="title">
 
     <!-- Splash text -->
     <div class="splash">Smartschool Edition!</div>
 
     <!-- Menu -->
-    <div class="menu" id="main-menu" style="display:none;">
-        <button class="mc-btn" data-action="single">Singleplayer</button><br>
-        <button class="mc-btn" data-action="multi">Multiplayer</button><br>
-        <button class="mc-btn" data-action="realms">Minecraft Realms</button><br>
-        <button class="mc-btn" data-action="options">Options...</button><br>
-        <button class="mc-btn" data-action="quit">Quit Game</button>
+    <div class="menu">
+        <button class="mc-btn">Inloggen</button>
+        <button class="mc-btn">Smartschool Live</button>
+        <button class="mc-btn">Schoolagenda</button>
+        <button class="mc-btn">Toetsen</button>
+        <button class="mc-btn">Instellingen</button>
     </div>
 
-    <!-- Version + copyright -->
-    <div class="version">Minecraft 1.13.1</div>
-    <div class="copyright">© 2026 FoL – All rights reserved.</div>
+    <!-- Version -->
+    <div class="version">MCSM v1.0</div>
+
+    <!-- Copyright -->
+    <div class="copyright">© 2024 Smartschool Edition</div>
 
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const loading = document.getElementById("loading");
-            const bar = document.getElementById("mc-bar");
-            const menu = document.getElementById("main-menu");
+        // Fake loading animation
+        let bar = document.getElementById("progress");
+        let overlay = document.getElementById("loading");
+        let width = 0;
 
-            let p = 0;
-            const interval = setInterval(() => {
-                p += Math.random() * 12;
-                if (p >= 100) {
-                    p = 100;
-                    clearInterval(interval);
-                    loading.style.display = "none";
-                    menu.style.display = "block";
-                }
-                bar.style.width = p + "%";
-            }, 200);
+        let interval = setInterval(() => {
+            width += 2;
+            bar.style.width = width + "%";
 
-            document.addEventListener("click", e => {
-                if (!e.target.classList.contains("mc-btn")) return;
-                const action = e.target.dataset.action;
-
-                alert(action + " is not implemented yet.");
-            });
-        });
+            if (width >= 100) {
+                clearInterval(interval);
+                overlay.style.display = "none";
+            }
+        }, 40);
     </script>
 
 </body>

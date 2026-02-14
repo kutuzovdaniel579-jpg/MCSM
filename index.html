@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Minecraft: Smartschool Edition</title>
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/icon.png">
-
     <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+    <!-- Three.js + GLTFLoader (MOET HIER STAAN!) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/examples/js/loaders/GLTFLoader.js"></script>
 
     <style>
         html, body {
@@ -34,7 +37,6 @@
             top: 5%;
             left: 25%;
             width: 50%;
-            height: auto;
         }
 
         .Edition {
@@ -42,7 +44,6 @@
             top: calc(5% + 150px);
             left: 25%;
             width: 50%;
-            height: auto;
         }
 
         .splash {
@@ -53,7 +54,6 @@
             color: yellow;
             transform: rotate(-15deg);
             text-shadow: 2px 2px 0px black;
-            white-space: nowrap;
             animation: mcBounce 1.4s infinite ease-in-out;
         }
 
@@ -80,19 +80,14 @@
             color: #fff;
             text-shadow: 2px 2px 0 #000;
             cursor: pointer;
-
             background: #6d6d6d;
             border: 2px solid #000;
-
             box-shadow:
                 inset 2px 2px 0 #8f8f8f,
                 inset -2px -2px 0 #3f3f3f;
         }
 
-        .mc-btn:hover {
-            background: #7f7f7f;
-        }
-
+        .mc-btn:hover { background: #7f7f7f; }
         .mc-btn:active {
             background: #5a5a5a;
             box-shadow:
@@ -100,31 +95,16 @@
                 inset 2px 2px 0 #3f3f3f;
         }
 
-        .version {
+        .version, .version2, .copyright {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
             font-size: 14px;
             opacity: 0.8;
         }
 
-        .version2 {
-            position: absolute;
-            bottom: 30px;
-            left: 10px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
+        .version { bottom: 10px; left: 10px; }
+        .version2 { bottom: 30px; left: 10px; }
+        .copyright { bottom: 10px; right: 10px; }
 
-        .copyright {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Smartschool login button */
         .ss-login {
             position: absolute;
             top: 20px;
@@ -142,18 +122,6 @@
             z-index: 15;
         }
 
-        .ss-login:hover {
-            background: #7f7f7f;
-        }
-
-        .ss-login:active {
-            background: #5a5a5a;
-            box-shadow:
-                inset -2px -2px 0 #8f8f8f,
-                inset 2px 2px 0 #3f3f3f;
-        }
-
-        /* 3D skin viewer container */
         .skin-viewer-container {
             position: absolute;
             top: 50%;
@@ -164,23 +132,11 @@
             z-index: 10;
         }
 
-        .user-label {
-            font-size: 18px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 0 #000;
-        }
-
         #skinCanvas {
             width: 200px;
             height: 300px;
-            margin: 0 auto;
-            background: transparent;
         }
     </style>
-
-    <!-- Three.js + GLTFLoader -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 
 <body>
@@ -189,11 +145,8 @@
 
     <button class="ss-login" id="ssLoginBtn">Inloggen met Smartschool</button>
 
-    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/McTitle.png"
-         class="title">
-
-    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SSEtitle.png"
-         class="Edition">
+    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/McTitle.png" class="title">
+    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SSEtitle.png" class="Edition">
 
     <div class="splash" id="splashText"></div>
 
@@ -209,7 +162,6 @@
     <div class="version2">MCSM 1.0</div>
     <div class="copyright">© 2026 MCSM</div>
 
-    <!-- 3D Skin viewer -->
     <div class="skin-viewer-container">
         <div class="user-label" id="ssUser">Niet ingelogd</div>
         <div id="skinCanvas"></div>
@@ -217,51 +169,36 @@
     </div>
 
     <script>
-        // Dynamische achtergrond
+        // Random achtergrond
         const bgIndex = Math.floor(Math.random() * 5) + 1;
         document.body.style.backgroundImage =
             `url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/background/${bgIndex}.png")`;
 
         // Splash text
         const splashTexts = [
-            "Smartschool Edition!",
-            "Leer met stijl!",
-            "Blokken en boeken!",
-            "Slimmer dan Redstone!",
-            "Schoolcraft!",
-            "Survival in de klas!",
-            "Edu-adventure!",
-            "Van les naar quest!",
-            "Smartschool x Minecraft!",
-            "Klaar voor kennis!",
-            "Powered by FoL!",
-            "Studeren maar dan leuk!",
-            "Achievement unlocked: Huiswerk!",
-            "Press ESC to skip school!",
-            "Craft je diploma!",
-            "Noteblocks > Notities!",
-            "W Speed!",
-            "100% FREE!"
+            "Smartschool Edition!", "Leer met stijl!", "Blokken en boeken!",
+            "Slimmer dan Redstone!", "Schoolcraft!", "Survival in de klas!",
+            "Edu-adventure!", "Van les naar quest!", "Smartschool x Minecraft!",
+            "Klaar voor kennis!", "Powered by MCSM!", "Studeren maar dan leuk!",
+            "Achievement unlocked: Huiswerk!", "Press ESC to skip school!",
+            "Craft je diploma!", "Noteblocks > Notities!"
         ];
         document.getElementById("splashText").textContent =
             splashTexts[Math.floor(Math.random() * splashTexts.length)];
 
-        // Smartschool OAuth redirect
+        // Smartschool login
         document.getElementById("ssLoginBtn").addEventListener("click", () => {
             window.location.href = "/auth/smartschool";
         });
 
-        // OAuth callback verwerking
+        // OAuth callback
         const params = new URLSearchParams(window.location.search);
         const user = params.get("user");
-        if (user) {
-            document.getElementById("ssUser").textContent = user;
-        }
+        if (user) document.getElementById("ssUser").textContent = user;
 
-        // --- Three.js GLB viewer ---
+        // --- GLB Viewer ---
         const container = document.getElementById("skinCanvas");
-        const width = 200;
-        const height = 300;
+        const width = 200, height = 300;
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
@@ -276,31 +213,26 @@
         light.position.set(2, 4, 5);
         scene.add(light);
 
-        const ambient = new THREE.AmbientLight(0xffffff, 0.4);
-        scene.add(ambient);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.4));
 
         let model;
 
         const loader = new THREE.GLTFLoader();
         loader.load(
             "https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/steve.glb",
-            function (gltf) {
+            gltf => {
                 model = gltf.scene;
                 model.position.set(0, -1.1, 0);
-                model.rotation.y = Math.PI;
+                model.scale.set(1.2, 1.2, 1.2);
                 scene.add(model);
             },
             undefined,
-            function (error) {
-                console.error("Error loading GLB:", error);
-            }
+            err => console.error("GLB load error:", err)
         );
 
         function animate() {
             requestAnimationFrame(animate);
-            if (model) {
-                model.rotation.y += 0.01;
-            }
+            if (model) model.rotation.y += 0.01;
             renderer.render(scene, camera);
         }
         animate();

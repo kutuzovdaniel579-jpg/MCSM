@@ -6,10 +6,6 @@
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/icon.png">
     <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
 
-    <!-- Three.js + GLTFLoader (MOET HIER STAAN!) -->
-    <script src="https://unpkg.com/three@0.152.2/build/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.152.2/examples/jsm/loaders/GLTFLoader.js"></script>
-
     <style>
         html, body {
             margin: 0;
@@ -168,35 +164,11 @@
         <p style="opacity:0.8; margin-top:8px;">Skin: Steve</p>
     </div>
 
-    <script>
-        // Random achtergrond
-        const bgIndex = Math.floor(Math.random() * 5) + 1;
-        document.body.style.backgroundImage =
-            `url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/background/${bgIndex}.png")`;
+    <!-- ⭐ Three.js ES Module GLB Viewer -->
+    <script type="module">
+        import * as THREE from "https://unpkg.com/three@0.152.2/build/three.module.js";
+        import { GLTFLoader } from "https://unpkg.com/three@0.152.2/examples/jsm/loaders/GLTFLoader.js";
 
-        // Splash text
-        const splashTexts = [
-            "Smartschool Edition!", "Leer met stijl!", "Blokken en boeken!",
-            "Slimmer dan Redstone!", "Schoolcraft!", "Survival in de klas!",
-            "Edu-adventure!", "Van les naar quest!", "Smartschool x Minecraft!",
-            "Klaar voor kennis!", "Powered by MCSM!", "Studeren maar dan leuk!",
-            "Achievement unlocked: Huiswerk!", "Press ESC to skip school!",
-            "Craft je diploma!", "Noteblocks > Notities!"
-        ];
-        document.getElementById("splashText").textContent =
-            splashTexts[Math.floor(Math.random() * splashTexts.length)];
-
-        // Smartschool login
-        document.getElementById("ssLoginBtn").addEventListener("click", () => {
-            window.location.href = "/auth/smartschool";
-        });
-
-        // OAuth callback
-        const params = new URLSearchParams(window.location.search);
-        const user = params.get("user");
-        if (user) document.getElementById("ssUser").textContent = user;
-
-        // --- GLB Viewer ---
         const container = document.getElementById("skinCanvas");
         const width = 200, height = 300;
 
@@ -217,7 +189,7 @@
 
         let model;
 
-        const loader = new THREE.GLTFLoader();
+        const loader = new GLTFLoader();
         loader.load(
             "https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/steve.glb",
             gltf => {
@@ -236,6 +208,31 @@
             renderer.render(scene, camera);
         }
         animate();
+    </script>
+
+    <script>
+        const bgIndex = Math.floor(Math.random() * 5) + 1;
+        document.body.style.backgroundImage =
+            `url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/background/${bgIndex}.png")`;
+
+        const splashTexts = [
+            "Smartschool Edition!", "Leer met stijl!", "Blokken en boeken!",
+            "Slimmer dan Redstone!", "Schoolcraft!", "Survival in de klas!",
+            "Edu-adventure!", "Van les naar quest!", "Smartschool x Minecraft!",
+            "Klaar voor kennis!", "Powered by MCSM!", "Studeren maar dan leuk!",
+            "Achievement unlocked: Huiswerk!", "Press ESC to skip school!",
+            "Craft je diploma!", "Noteblocks > Notities!"
+        ];
+        document.getElementById("splashText").textContent =
+            splashTexts[Math.floor(Math.random() * splashTexts.length)];
+
+        document.getElementById("ssLoginBtn").addEventListener("click", () => {
+            window.location.href = "/auth/smartschool";
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get("user");
+        if (user) document.getElementById("ssUser").textContent = user;
     </script>
 
 </body>

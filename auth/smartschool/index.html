@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Smartschool Login</title>
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Minecraft', monospace;
+            background: url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/background/1.png") center/cover no-repeat;
+            color: white;
+        }
+
+        .vignette {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .login-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+            border: 3px solid #000;
+            box-shadow:
+                inset 3px 3px 0 #8f8f8f,
+                inset -3px -3px 0 #3f3f3f;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #000;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            border: 2px solid #000;
+            background: #6d6d6d;
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+        }
+
+        .mc-btn {
+            width: 200px;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            background: #6d6d6d;
+            border: 2px solid #000;
+            color: white;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+        }
+
+        .mc-btn:hover { background: #7f7f7f; }
+        .mc-btn:active {
+            background: #5a5a5a;
+            box-shadow:
+                inset -2px -2px 0 #8f8f8f,
+                inset 2px 2px 0 #3f3f3f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="vignette"></div>
+
+    <div class="login-box">
+        <h1>Smartschool Login</h1>
+
+        <input type="text" id="username" placeholder="Gebruikersnaam">
+        <input type="password" id="password" placeholder="Wachtwoord">
+
+        <button class="mc-btn" id="loginBtn">Inloggen</button>
+    </div>
+
+    <script>
+        document.getElementById("loginBtn").addEventListener("click", () => {
+            const user = document.getElementById("username").value.trim();
+
+            if (!user) {
+                alert("Vul een gebruikersnaam in!");
+                return;
+            }
+
+            // Fake OAuth redirect
+            window.location.href = `https://kutuzovdaniel579-jpg.github.io/MCSM/?user=${encodeURIComponent(user)}`;
+        });
+    </script>
+
+</body>
+</html>

@@ -55,6 +55,13 @@
             transform: rotate(-15deg);
             text-shadow: 2px 2px 0px black;
             white-space: nowrap;
+            animation: mcBounce 1.4s infinite ease-in-out;
+        }
+
+        @keyframes mcBounce {
+            0%   { transform: rotate(-15deg) translateY(0); }
+            50%  { transform: rotate(-15deg) translateY(-12px); }
+            100% { transform: rotate(-15deg) translateY(0); }
         }
 
         .menu {
@@ -118,17 +125,101 @@
             opacity: 0.8;
         }
 
-        /* Minecraft bounce animation */
-        @keyframes mcBounce {
-            0%   { transform: rotate(-15deg) translateY(0); }
-            50%  { transform: rotate(-15deg) translateY(-12px); }
-            100% { transform: rotate(-15deg) translateY(0); }
+        /* Smartschool login button */
+        .ss-login {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #6d6d6d;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+            z-index: 15;
         }
 
-        .splash {
-            animation: mcBounce 1.4s infinite ease-in-out;
+        .ss-login:hover {
+            background: #7f7f7f;
         }
 
+        .ss-login:active {
+            background: #5a5a5a;
+            box-shadow:
+                inset -2px -2px 0 #8f8f8f,
+                inset 2px 2px 0 #3f3f3f;
+        }
+
+        /* Locker button */
+        .locker-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #6d6d6d;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+            z-index: 15;
+        }
+
+        .locker-btn:hover {
+            background: #7f7f7f;
+        }
+
+        .locker-btn:active {
+            background: #5a5a5a;
+            box-shadow:
+                inset -2px -2px 0 #8f8f8f,
+                inset 2px 2px 0 #3f3f3f;
+        }
+
+        /* Locker panel */
+        .locker-panel {
+            position: absolute;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100%;
+            background: rgba(20, 20, 20, 0.95);
+            border-left: 3px solid #000;
+            box-shadow: -4px 0 0 #3f3f3f, inset 4px 0 0 #8f8f8f;
+            transition: right 0.4s ease;
+            padding: 20px;
+            color: white;
+            font-family: 'Minecraft', monospace;
+            z-index: 20;
+        }
+
+        .locker-panel.open {
+            right: 0;
+        }
+
+        .user-label {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .skin-preview {
+            width: 150px;
+            height: 300px;
+            margin: 20px auto;
+            background-image: url("https://minecraft.wiki/images/Steve.png");
+            background-size: cover;
+            image-rendering: pixelated;
+            filter: drop-shadow(0 0 10px black);
+        }
     </style>
 </head>
 
@@ -136,13 +227,15 @@
 
     <div class="vignette"></div>
 
+    <button class="ss-login">Inloggen met Smartschool</button>
+    <button class="locker-btn" onclick="toggleLocker()">Locker</button>
+
     <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/McTitle.png"
          class="title">
 
     <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SSEtitle.png"
          class="Edition">
 
-    <!-- Dynamische splash text -->
     <div class="splash" id="splashText"></div>
 
     <div class="menu">
@@ -157,7 +250,13 @@
     <div class="version2">MCSM 1.0</div>
     <div class="copyright">© 2026 MCSM</div>
 
-    <!-- SCRIPT: Random splash text -->
+    <!-- Locker panel -->
+    <div class="locker-panel" id="lockerPanel">
+        <div class="user-label" id="ssUser">Niet ingelogd</div>
+        <div class="skin-preview"></div>
+        <p style="text-align:center; opacity:0.8;">Skin aanpassen (binnenkort)</p>
+    </div>
+
     <script>
         const splashTexts = [
             "Smartschool Edition!",
@@ -178,8 +277,16 @@
             "Noteblocks > Notities!"
         ];
 
-        const randomIndex = Math.floor(Math.random() * splashTexts.length);
-        document.getElementById("splashText").textContent = splashTexts[randomIndex];
+        document.getElementById("splashText").textContent =
+            splashTexts[Math.floor(Math.random() * splashTexts.length)];
+
+        function toggleLocker() {
+            document.getElementById("lockerPanel").classList.toggle("open");
+        }
+
+        document.querySelector(".ss-login").addEventListener("click", () => {
+            document.getElementById("ssUser").textContent = "Smartschool Gebruiker";
+        });
     </script>
 
 </body>

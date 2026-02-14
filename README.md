@@ -1,7 +1,7 @@
 # 🌍 Minecraft: Smartschool Edition
 **A Minecraft‑themed UI makeover for Smartschool.**
 
-Minecraft: Smartschool Edition (MCSM) transforms the familiar Smartschool interface into a playful, pixel‑styled Minecraft experience. It’s lightweight, fully client‑side, and easy to customize.
+Minecraft: Smartschool Edition (MCSM) transforms the familiar Smartschool interface into a playful, pixel‑styled Minecraft experience. It’s lightweight, fully server‑side but can also be used fully client-side , and easy to customize.
 
 ---
 

@@ -117,6 +117,18 @@
             font-size: 14px;
             opacity: 0.8;
         }
+
+        /* Minecraft bounce animation */
+        @keyframes mcBounce {
+            0%   { transform: rotate(-15deg) translateY(0); }
+            50%  { transform: rotate(-15deg) translateY(-12px); }
+            100% { transform: rotate(-15deg) translateY(0); }
+        }
+
+        .splash {
+            animation: mcBounce 1.4s infinite ease-in-out;
+        }
+
     </style>
 </head>
 

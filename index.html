@@ -23,7 +23,6 @@
             background-position: center;
         }
 
-        /* Vignette overlay */
         .vignette {
             position: fixed;
             inset: 0;
@@ -31,7 +30,6 @@
             background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
         }
 
-        /* Title top-left */
         .title {
             position: absolute;
             top: 5%;
@@ -40,27 +38,25 @@
             height: auto;
         }
 
-        /* Edition onder Title */
         .Edition {
             position: absolute;
-            top: calc(5% + 150px); /* onder Title */
+            top: calc(5% + 150px);
             left: 25%;
             width: 50%;
             height: auto;
         }
 
-        /* Splash text rechts naast Title */
         .splash {
             position: absolute;
-            top: 12%;       /* uitgelijnd met Title */
-            left: 63%;      /* rechts van Title */
+            top: 12%;
+            left: 63%;
             font-size: 28px;
             color: yellow;
             transform: rotate(-15deg);
             text-shadow: 2px 2px 0px black;
+            white-space: nowrap;
         }
 
-        /* Menu container */
         .menu {
             position: absolute;
             top: 50%;
@@ -69,7 +65,6 @@
             text-align: center;
         }
 
-        /* Minecraft buttons */
         .mc-btn {
             display: block;
             width: 300px;
@@ -99,7 +94,6 @@
                 inset 2px 2px 0 #3f3f3f;
         }
 
-        /* Version bottom-left */
         .version {
             position: absolute;
             bottom: 10px;
@@ -116,7 +110,6 @@
             opacity: 0.8;
         }
 
-        /* Copyright bottom-right */
         .copyright {
             position: absolute;
             bottom: 10px;
@@ -137,7 +130,8 @@
     <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SSEtitle.png"
          class="Edition">
 
-    <div class="splash">Smartschool Edition!</div>
+    <!-- Dynamische splash text -->
+    <div class="splash" id="splashText"></div>
 
     <div class="menu">
         <button class="mc-btn">Singleplayer</button>
@@ -150,6 +144,31 @@
     <div class="version">Minecraft 1.20.1</div>
     <div class="version2">MCSM 1.0</div>
     <div class="copyright">© 2026 MCSM</div>
+
+    <!-- SCRIPT: Random splash text -->
+    <script>
+        const splashTexts = [
+            "Smartschool Edition!",
+            "Leer met stijl!",
+            "Blokken en boeken!",
+            "Slimmer dan Redstone!",
+            "Schoolcraft!",
+            "Survival in de klas!",
+            "Edu-adventure!",
+            "Van les naar quest!",
+            "Smartschool x Minecraft!",
+            "Klaar voor kennis!",
+            "Powered by MCSM!",
+            "Studeren maar dan leuk!",
+            "Achievement unlocked: Huiswerk!",
+            "Press ESC to skip school!",
+            "Craft je diploma!",
+            "Noteblocks > Notities!"
+        ];
+
+        const randomIndex = Math.floor(Math.random() * splashTexts.length);
+        document.getElementById("splashText").textContent = splashTexts[randomIndex];
+    </script>
 
 </body>
 </html>

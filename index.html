@@ -39,11 +39,20 @@
             height: auto;
         }
 
-        /* Splash text */
+        /* Edition onder Title */
+        .Edition {
+            position: absolute;
+            top: calc(5% + 90px); /* onder Title */
+            left: 25%;
+            width: 50%;
+            height: auto;
+        }
+
+        /* Splash text rechts naast Title */
         .splash {
             position: absolute;
-            top: 40px;
-            right: 40px;
+            top: 12%;       /* uitgelijnd met Title */
+            left: 63%;      /* rechts van Title */
             font-size: 28px;
             color: yellow;
             transform: rotate(-15deg);
@@ -59,7 +68,7 @@
             text-align: center;
         }
 
-        /* TRUE MINECRAFT BUTTONS (zoals in je screenshot) */
+        /* Minecraft buttons */
         .mc-btn {
             display: block;
             width: 300px;
@@ -70,13 +79,12 @@
             text-shadow: 2px 2px 0 #000;
             cursor: pointer;
 
-            background: #6d6d6d; /* middenvlak */
-            border: 2px solid #000; /* zwarte rand */
+            background: #6d6d6d;
+            border: 2px solid #000;
 
-            /* bevel shading */
             box-shadow:
-                inset 2px 2px 0 #8f8f8f,   /* licht boven/links */
-                inset -2px -2px 0 #3f3f3f; /* donker onder/rechts */
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
         }
 
         .mc-btn:hover {
@@ -117,7 +125,7 @@
     <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/McTitle.png"
          class="title">
 
-        <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SEtitle.png"
+    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SEtitle.png"
          class="Edition">
 
     <div class="splash">Smartschool Edition!</div>

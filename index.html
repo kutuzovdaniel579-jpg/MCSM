@@ -18,7 +18,6 @@
         }
 
         body {
-            background-image: url("https://wallpapercave.com/uwp/uwp4962857.jpeg");
             background-size: cover;
             background-position: center;
         }
@@ -181,7 +180,7 @@
         .skin-3d {
             width: 160px;
             height: 320px;
-            background-image: url("https://minecraft.wiki/images/Steve.png");
+            background-image: url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/steve.jpg");
             background-size: cover;
             image-rendering: pixelated;
             filter: drop-shadow(0 0 10px black);
@@ -232,6 +231,12 @@
     </div>
 
     <script>
+        // Dynamische achtergrond
+        const bgIndex = Math.floor(Math.random() * 5) + 1;
+        document.body.style.backgroundImage =
+            `url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/background/${bgIndex}.png")`;
+
+        // Splash text
         const splashTexts = [
             "Smartschool Edition!",
             "Leer met stijl!",
@@ -250,20 +255,15 @@
             "Craft je diploma!",
             "Noteblocks > Notities!"
         ];
-
         document.getElementById("splashText").textContent =
             splashTexts[Math.floor(Math.random() * splashTexts.length)];
 
-        // Smartschool OAuth: front-end deel
-        // Deze knop stuurt de gebruiker naar jouw backend OAuth endpoint.
+        // Smartschool OAuth redirect
         document.getElementById("ssLoginBtn").addEventListener("click", () => {
-            // Hier verwacht je een backend route die de echte Smartschool OAuth start.
-            // Voorbeeld: https://jouwdomein.tld/auth/smartschool
             window.location.href = "/auth/smartschool";
         });
 
-        // Na de OAuth callback kan je backend terugsturen naar:
-        // https://jouwdomein.tld/?user=Voornaam+Naam
+        // OAuth callback verwerking
         const params = new URLSearchParams(window.location.search);
         const user = params.get("user");
         if (user) {

@@ -153,13 +153,13 @@
                 inset 2px 2px 0 #3f3f3f;
         }
 
-        /* 3D skin viewer */
+        /* 3D skin viewer container */
         .skin-viewer-container {
             position: absolute;
             top: 50%;
             right: 8%;
             transform: translateY(-50%);
-            width: 200px;
+            width: 220px;
             text-align: center;
             z-index: 10;
         }
@@ -170,29 +170,17 @@
             text-shadow: 2px 2px 0 #000;
         }
 
-        .skin-3d-wrapper {
-            perspective: 800px;
-            width: 160px;
-            height: 320px;
+        #skinCanvas {
+            width: 200px;
+            height: 300px;
             margin: 0 auto;
-        }
-
-        .skin-3d {
-            width: 160px;
-            height: 320px;
-            background-image: url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/steve.jpg");
-            background-size: cover;
-            image-rendering: pixelated;
-            filter: drop-shadow(0 0 10px black);
-            transform-style: preserve-3d;
-            animation: spinSkin 8s linear infinite;
-        }
-
-        @keyframes spinSkin {
-            0%   { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
+            background: transparent;
         }
     </style>
+
+    <!-- Three.js + GLTFLoader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.152/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 
 <body>
@@ -224,9 +212,7 @@
     <!-- 3D Skin viewer -->
     <div class="skin-viewer-container">
         <div class="user-label" id="ssUser">Niet ingelogd</div>
-        <div class="skin-3d-wrapper">
-            <div class="skin-3d"></div>
-        </div>
+        <div id="skinCanvas"></div>
         <p style="opacity:0.8; margin-top:8px;">Skin: Steve</p>
     </div>
 
@@ -269,6 +255,53 @@
         if (user) {
             document.getElementById("ssUser").textContent = user;
         }
+
+        // --- Three.js GLB viewer ---
+        const container = document.getElementById("skinCanvas");
+        const width = 200;
+        const height = 300;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+        camera.position.set(0, 1.6, 3);
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const light = new THREE.DirectionalLight(0xffffff, 1.2);
+        light.position.set(2, 4, 5);
+        scene.add(light);
+
+        const ambient = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambient);
+
+        let model;
+
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            "https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/steve.glb",
+            function (gltf) {
+                model = gltf.scene;
+                model.position.set(0, -1.1, 0);
+                model.rotation.y = Math.PI;
+                scene.add(model);
+            },
+            undefined,
+            function (error) {
+                console.error("Error loading GLB:", error);
+            }
+        );
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (model) {
+                model.rotation.y += 0.01;
+            }
+            renderer.render(scene, camera);
+        }
+        animate();
     </script>
 
 </body>

@@ -71,8 +71,9 @@ You can easily adjust the look and feel:
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.  
-See `LICENSE.md` for details.
+This project is licensed under an custom license.  
+See [`LICENSE.md`](https://github.com/kutuzovdaniel579-jpg/MCSM/blob/main/LICENSE.md "Check LICENSE.md out")
+ for details.
 
 ---
 

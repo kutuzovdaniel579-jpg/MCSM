@@ -1,124 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Minecraft 1.20.1 – Singleplayer</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      image-rendering: pixelated;
-      margin: 0;
-      padding: 0;
-      font-family: "Minecraftia", system-ui, sans-serif;
-    }
+<meta charset="UTF-8">
+<title>Minecraft 1.20.1 – Singleplayer</title>
 
-    body {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background: url("https://i.imgur.com/8KZt7uM.png") center/cover no-repeat fixed; /* vervang door eigen bg */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-    }
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+    font-family: "Minecraftia", sans-serif;
+  }
 
-    .vignette {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);
-      z-index: 0;
-    }
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: url("../assets/bg.png") center/cover no-repeat fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
 
-    .container {
-      position: relative;
-      z-index: 1;
-      width: 900px;
-      max-width: 95vw;
-      height: 520px;
-      max-height: 90vh;
-      background: rgba(0, 0, 0, 0.55);
-      border: 2px solid #000;
-      box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+  .vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);
+  }
 
-    .title-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
+  .menu {
+    width: 900px;
+    height: 520px;
+    background: rgba(0,0,0,0.55);
+    border: 2px solid #000;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .title-bar h1 {
-      font-size: 24px;
-      text-shadow: 2px 2px #000;
-    }
+  .titlebar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    text-shadow: 2px 2px #000;
+  }
 
-    .title-bar span {
-      font-size: 12px;
-      opacity: 0.8;
-      text-shadow: 1px 1px #000;
-    }
+  .world-list-box {
+    flex: 1;
+    border: 2px solid #000;
+    background: rgba(0,0,0,0.6);
+    padding: 6px;
+    overflow-y: auto;
+  }
 
-    .world-list-wrapper {
-      flex: 1;
-      border: 2px solid #000;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      overflow: hidden;
-    }
+  .world {
+    background: rgba(32,32,32,0.9);
+    border: 2px solid #000;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: 80ms;
+  }
 
-    .world-list {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
+  .world:hover {
+    background: rgba(48,48,48,0.95);
+  }
 
-    .world-entry {
-      background: rgba(32, 32, 32, 0.9);
-      border: 2px solid #000;
-      padding: 6px 8px;
-      margin-bottom: 4px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      transition: background 80ms, border-color 80ms;
-    }
+  .world.selected {
+    border-color: #ffff55;
+    background: rgba(64,64,32,0.95);
+  }
 
-    .world-entry:hover {
-      background: rgba(48, 48, 48, 0.95);
-    }
+  .world-name {
+    font-size: 16px;
+    text-shadow: 1px 1px #000;
+  }
 
-    .world-entry.selected {
-      border-color: #ffff55;
-      background: rgba(64, 64, 32, 0.95);
-    }
+  .world-info {
+    font-size: 11px;
+    opacity: 0.8;
+  }
 
-    .world-name {
-      font-size: 16px;
-      text-shadow: 1px 1px #000;
-    }
+  .bottom {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 10px;
+  }
 
-    .world-id {
-      font-size: 11px;
-      opacity: 0.8;
-    }
+  .btn-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
 
-    .world-meta {
-      font-size: 11px;
-      opacity: 0.9;
-    }
+  .btn-row-right {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
-    .scroll-hint {
-      font-size: 11px;
-      opacity: 0.7;
-      margin
+  .mc-btn {
+    height: 26px;
+    border: 2px solid #000;
+    background: linear-gradient(#6b6b6b, #4b4b4b);
+    color: #fff;
+    text-shadow: 1px 1px #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    text-decoration: none;
+  }
+
+  .mc-btn:hover {
+    background: linear-gradient(#7b7b7b, #5b5b5b);
+  }
+
+  .mc-btn:active {
+    background: linear-gradient(#3b3b3b, #2b2b2b);
+  }
+</style>
+
+</head>
+<body>
+
+<div class="vignette"></div>
+
+<div class="menu">
+
+  <div class="titlebar">
+    <div>Select World</div>
+    <div>Minecraft 1.20.1</div>
+  </div>
+
+  <div class="world-list-box" id="worldList">
+    <div class="world">
+      <div class="world-name">Nieuwe Wereld</div>
+      <div class="world-info">Survival • 12/02/2026 • 14:22</div>
+    </div>
+
+    <div class="world">
+      <div class="world-name">Hardcore Poggers</div>
+      <div class="world-info">Hardcore • 01/03/2026 • 19:11</div>
+    </div>
+
+    <div class="world">
+      <div class="world-name">Creative Test</div>
+      <div class="world-info">Creative • 28/02/2026 • 09:55</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="btn-row">
+      <a class="mc-btn" href="#">Play Selected World</a>
+      <a class="mc-btn" href="#">Create New World</a>
+      <a class="mc-btn" href="#">Edit</a>
+      <a class="mc-btn" href="#">Delete</a>
+      <a class="mc-btn" href="#">Re‑Create</a>
+    </div>
+
+    <div class="btn-row-right">
+      <a class="mc-btn" href="../index.html">Cancel</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const worlds = document.querySelectorAll(".world");
+  worlds.forEach(w => {
+    w.addEventListener("click", () => {
+      document.querySelectorAll(".world").forEach(x => x.classList.remove("selected"));
+      w.classList.add("selected");
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "WorldFormat": "<div class=\"world-list-box\" id=\"worldList\">\
+    <div class=\"world\">\
+      <div class=\"world-name\">xxx</div>\
+      <div class=\"world-info\">Gamemode • dd/mm/yyyy • xx:xx</div>\
+    </div>\
+  </div>"
+}

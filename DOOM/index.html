@@ -1,20 +1,30 @@
-<!doctype html>
-  <html lang="en-us">
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <title>DOOM</title>
-      <style type="text/css">
-        .dosbox-container { width: 320px; height: 200px; }
-        .dosbox-container > .dosbox-overlay { background: url(https://js-dos.com/cdn/DOOM.png); }
-     </style>
-   </head>
-   <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DOOM Web</title>
 
-     <iframe 
-        src="https://raz0red.github.io/webprboom"
-        style="width:100%; height:100%; border:none;">
-    </iframe>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+  }
 
-   </body>
+  iframe {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
+</style>
+</head>
+
+<body>
+  <iframe src="https://raz0red.github.io/webprboom"></iframe>
+</body>
 </html>

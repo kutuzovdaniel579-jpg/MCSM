@@ -10,21 +10,11 @@
      </style>
    </head>
    <body>
-     <div id="dosbox"></div>
-     <br/>
-     <button onclick="dosbox.requestFullScreen();">Make fullscreen</button>
-     
-     <script type="text/javascript" src="https://js-dos.com/cdn/js-dos-api.js"></script>
-     <script type="text/javascript">
-       var dosbox = new Dosbox({
-         id: "dosbox",
-         onload: function (dosbox) {
-           dosbox.run("upload/DOOM-@evilution.zip", "./doom");
-         },
-         onrun: function (dosbox, app) {
-           console.log("App '" + app + "' is runned");
-         }
-       });
-     </script>
+
+     <iframe 
+        src="https://raz0red.github.io/webprboom"
+        style="width:100%; height:100%; border:none;">
+    </iframe>
+
    </body>
 </html>

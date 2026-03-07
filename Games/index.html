@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MCSM: GAMES</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/icon.png">
+    <link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Minecraft', monospace;
+            color: white;
+        }
+
+        body {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .vignette {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(0,0,0,0) 40%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .title {
+            position: absolute;
+            top: 5%;
+            left: 25%;
+            width: 50%;
+        }
+
+        .Edition {
+            position: absolute;
+            top: calc(5% + 150px);
+            left: 25%;
+            width: 50%;
+        }
+
+        .splash {
+            position: absolute;
+            top: 12%;
+            left: 63%;
+            font-size: 28px;
+            color: yellow;
+            transform: rotate(-15deg);
+            text-shadow: 2px 2px 0px black;
+            animation: mcBounce 1.4s infinite ease-in-out;
+        }
+
+        @keyframes mcBounce {
+            0%   { transform: rotate(-15deg) translateY(0); }
+            50%  { transform: rotate(-15deg) translateY(-12px); }
+            100% { transform: rotate(-15deg) translateY(0); }
+        }
+
+        .menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .mc-btn {
+            display: block;
+            width: 300px;
+            padding: 10px 0;
+            margin: 6px auto;
+            font-size: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            cursor: pointer;
+            background: #6d6d6d;
+            border: 2px solid #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+        }
+
+        .mc-btn:hover { background: #7f7f7f; }
+        .mc-btn:active {
+            background: #5a5a5a;
+            box-shadow:
+                inset -2px -2px 0 #8f8f8f,
+                inset 2px 2px 0 #3f3f3f;
+        }
+
+        .version, .version2, .copyright {
+            position: absolute;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .version { bottom: 10px; left: 10px; }
+        .version2 { bottom: 30px; left: 10px; }
+        .copyright { bottom: 10px; right: 10px; }
+
+        .ss-login {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #6d6d6d;
+            border: 2px solid #000;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            text-shadow: 2px 2px 0 #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+            z-index: 15;
+        }
+
+        .skin-viewer-container {
+            position: absolute;
+            top: 50%;
+            right: 8%;
+            transform: translateY(-50%);
+            width: 220px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .skin-img {
+            width: 200px;
+            height: auto;
+            image-rendering: pixelated;
+            filter: drop-shadow(0 0 10px black);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="vignette"></div>
+
+    <button class="ss-login" id="ssLoginBtn">Inloggen met Smartschool</button>
+
+    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/McTitle.png" class="title">
+    <img src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/title/SSEtitle.png" class="Edition">
+
+    <div class="splash" id="splashText"></div>
+
+    <div class="menu">
+        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/MCSM/Games/DOOM'">DOOM</button>
+        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Multiplayer}?owner=FoL'">Multiplayer</button>
+        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Texture Packs}?owner=FoL'">Texture Packs</button>
+        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Options...}?owner=FoL'">Options...</button>
+        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Quit Game}?owner=FoL'">Quit Game</button>
+        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/MCSM/Games/'">Leave MCSM Games</button>
+    </div>
+
+    <div class="version">Minecraft 1.20.1</div>
+    <div class="version2">MCSM 1.0</div>
+    <div class="copyright">© 2026 MCSM</div>
+
+    <!-- ⭐ Static JPG viewer -->
+    <div class="skin-viewer-container">
+        <div class="user-label" id="ssUser">Niet ingelogd</div>
+
+        <img 
+            src="https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/steve.png"
+            alt="Steve"
+            class="skin-img"
+        >
+
+        <p style="opacity:0.8; margin-top:8px;">Skin: Steve</p>
+    </div>
+
+    <script>
+        // Random achtergrond
+        const bgIndex = Math.floor(Math.random() * 5) + 1;
+        document.body.style.backgroundImage =
+            `url("https://raw.githubusercontent.com/kutuzovdaniel579-jpg/MCSM/refs/heads/main/assets/background/${bgIndex}.png")`;
+
+        // Splash text
+        const splashTexts = [
+            "!MCSM GAMES!"
+        ];
+        document.getElementById("splashText").textContent =
+            splashTexts[Math.floor(Math.random() * splashTexts.length)];
+
+        // Smartschool login
+        document.getElementById("ssLoginBtn").addEventListener("click", () => {
+            window.location.href = "https://kutuzovdaniel579-jpg.github.io/MCSM/auth/smartschool/";
+        });
+
+        // OAuth callback
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get("user");
+        if (user) document.getElementById("ssUser").textContent = user;
+    </script>
+
+</body>
+</html>

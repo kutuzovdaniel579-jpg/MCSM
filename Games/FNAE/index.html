@@ -14,13 +14,30 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #0b3b0b url("") no-repeat center center fixed;
-      background-size: cover;
+      background: #0b3b0b;
       color: #f5f5f5;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Achtergrondlaag (video of image) */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-layer video,
+    .bg-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .frame {
@@ -99,30 +116,54 @@
       font-size: 11px;
       color: #9a9a9a;
     }
-
-    @media (max-width: 520px) {
-      .frame {
-        margin: 16px;
-        padding: 24px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <h1 class="title">MCSM: FNAE HUB</h1>
-    <p class="subtitle">Kies een spel om te starten</p>
+  <!-- Dynamische achtergrondlaag -->
+  <div class="bg-layer" id="bg-layer"></div>
 
+  <div class="frame">
+    <div class="title">MCSM: FNAE HUB</div>
+    <div class="subtitle">Kies je versie</div>
     <div class="divider"></div>
 
     <div class="buttons">
-      <a class="btn" href="https://kutuzovdaniel579-jpg.github.io/MCSM/Games/FNAE/FNAE1">Five Nights at Epstein's 1</a>
-      <a class="btn secondary" href="https://kutuzovdaniel579-jpg.github.io/MCSM/Games/FNAE/FNAE2">Five Nights at Epstein's 2</a>
+      <a class="btn" href="#">Start Game</a>
+      <a class="btn secondary" href="#">Opties</a>
     </div>
 
     <div class="footer">
-      © 2026 MCSM · MCSM 1.0 · MCSMG 1.0
+      Powered by FoL • MCSM FNAE HUB
     </div>
   </div>
+
+  <script>
+    // === HIER PAS JE ALLEEN DIT AAN ===
+    const BACKGROUND_SRC = "assets/fnae-bg.mp4"; // kan .mp4, .jpg, .jpeg, .png zijn
+    // ==================================
+
+    const layer = document.getElementById("bg-layer");
+    const isVideo = BACKGROUND_SRC.toLowerCase().endsWith(".mp4");
+
+    if (isVideo) {
+      const video = document.createElement("video");
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+
+      const source = document.createElement("source");
+      source.src = BACKGROUND_SRC;
+      source.type = "video/mp4";
+
+      video.appendChild(source);
+      layer.appendChild(video);
+    } else {
+      const img = document.createElement("img");
+      img.src = BACKGROUND_SRC;
+      img.alt = "Background";
+      layer.appendChild(img);
+    }
+  </script>
 </body>
 </html>

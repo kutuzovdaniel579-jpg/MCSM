@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>MCSM: FNAE HUB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0b3b0b url("https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5c/Grass_Block_side_texture_BE2.png") repeat;
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frame {
+      background: #1b1b1b;
+      border: 4px solid #000;
+      box-shadow: 0 0 0 4px #3f3f3f, 0 0 40px rgba(0, 0, 0, 0.7);
+      padding: 32px 40px 40px;
+      max-width: 480px;
+      width: 100%;
+    }
+
+    .title {
+      font-family: "Minecraftia", monospace;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px #000;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #c0c0c0;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(to right, #3b8526, #6bbf3a, #3b8526);
+      margin-bottom: 24px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      background: #3b8526;
+      border: 3px solid #000;
+      color: #f5f5f5;
+      text-decoration: none;
+      font-family: "Minecraftia", monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 14px;
+      text-align: center;
+      box-shadow: 0 4px 0 #1c3f11;
+      cursor: pointer;
+      transition: transform 80ms ease, box-shadow 80ms ease, filter 120ms ease;
+    }
+
+    .btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #1c3f11;
+    }
+
+    .btn.secondary {
+      background: #2f4f7f;
+      box-shadow: 0 4px 0 #15243b;
+    }
+
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 11px;
+      color: #9a9a9a;
+    }
+
+    @media (max-width: 520px) {
+      .frame {
+        margin: 16px;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <h1 class="title">MCSM: FNAE HUB</h1>
+    <p class="subtitle">Kies een spel om te starten</p>
+
+    <div class="divider"></div>
+
+    <div class="buttons">
+      <a class="btn" href="https://kutuzovdaniel579-jpg.github.io/MCSM/Games/FNAE/FNAE1">Five Nights at Epstein's 1</a>
+      <a class="btn secondary" href="https://kutuzovdaniel579-jpg.github.io/MCSM/Games/FNAE/FNAE2">Five Nights at Epstein's 2</a>
+    </div>
+
+    <div class="footer">
+      © 2026 MCSM · MCSM 1.0 · MCSMG 1.0
+    </div>
+  </div>
+</body>
+</html>

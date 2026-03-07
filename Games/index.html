@@ -91,6 +91,30 @@
                 inset 2px 2px 0 #3f3f3f;
         }
 
+                .leave-mc-btn {
+            display: block;
+            width: 300px;
+            padding: 10px 0;
+            margin: 6px auto;
+            font-size: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            cursor: pointer;
+            background: #D63529;
+            border: 2px solid #000;
+            box-shadow:
+                inset 2px 2px 0 #8f8f8f,
+                inset -2px -2px 0 #3f3f3f;
+        }
+
+        .leave-mc-btn:hover { background: #D14A41; }
+        .leave-mc-btn:active {
+            background: ##832620;
+            box-shadow:
+                inset -2px -2px 0 #8f8f8f,
+                inset 2px 2px 0 #3f3f3f;
+        }
+
         .version, .version2, .copyright {
             position: absolute;
             font-size: 14px;
@@ -151,10 +175,7 @@
     <div class="menu">
         <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/MCSM/Games/Minecraft'">Minecraft</button>
         <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/MCSM/Games/DOOM">Doom</button>
-        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Texture Packs}?owner=FoL'">Texture Packs</button>
-        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Options...}?owner=FoL'">Options...</button>
-        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/TroubleShoot/?lang=en?error_code=1?title=Oops...?description=This Function is not done yet {Quit Game}?owner=FoL'">Quit Game</button>
-        <button class="mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/MCSM/'">Leave MCSM Games</button>
+        <button class="leave-mc-btn" onclick="location.href='https://kutuzovdaniel579-jpg.github.io/MCSM/'">Leave MCSM Games</button>
     </div>
 
     <div class="version">Minecraft 1.20.1</div>
